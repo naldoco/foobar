@@ -1,0 +1,32 @@
+# zim:
+echo ZIM;echo ====================
+rm -rf "$DIR_ZIM_BAK2"
+mv "$DIR_ZIM_BAK"  "$DIR_ZIM_BAK2"
+mkdir "$DIR_ZIM_BAK"
+
+#mv "$DIR_ZIM"  "$DIR_ZIM_BAK"
+### RCC move all content
+
+echo a
+ls "$DIR_ZIM/*  $DIR_ZIM_BAK2"
+echo b
+ls "$DIR_ZIM/*  $DIR_ZIM_BAK2" 
+echo c
+ls $DIR_ZIM/*   $DIR_ZIM_BAK2
+echo d
+ls "$DIR_ZIM"/*   $DIR_ZIM_BAK2
+echo e
+
+mv "$DIR_ZIM/"*  "$DIR_ZIM_BAK"
+echo no ocultos
+read
+mv "$DIR_ZIM/".* "$DIR_ZIM_BAK" 2>/dev/null
+echo ocultos
+read
+echo mv "$DIR_ZIM/*"  "$DIR_ZIM_BAK"
+echo mv "$DIR_ZIM/.*" "$DIR_ZIM_BAK" 2>/dev/null
+
+
+
+read
+echo

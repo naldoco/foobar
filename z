@@ -1,0 +1,36 @@
+#!/bin/bash
+
+DIR_ZIM="/home/naldoco/notes-zim-ok"
+checkDirectory "$DIR_ZIM"
+DIR_ZIM_BAK="/home/naldoco/notes-zim-ok.bak"
+checkDirectory "$DIR_ZIM_BAK"
+DIR_ZIM_BAK2="/home/naldoco/notes-zim-ok.bak2"
+checkDirectory "$DIR_ZIM_BAK2"
+echo uno
+read
+
+# Mostrar estado de los directorios
+notasMasOcultos=$(find  "$DIR_ZIM" |wc -l)
+gitOcultos=$(find  "$DIR_ZIM/.git"  |wc -l)
+zimOcultos=$(find  "$DIR_ZIM/.zim"  |wc -l)
+gitignoreOculto=$(find  "$DIR_ZIM/.gitignore" |wc -l)
+otros=$gitignoreOculto
+notasLimpias=$(($notasMasOcultos-$zimOcultos-$gitOcultos-$otros))
+
+ls -l --directory $DIR_ZIM
+echo "Elementos: $notasLimpias (Ocultos controlados: .git: $(($gitOcultos)); .zim: $zimOcultos; otros: $otros)"
+
+ls -l --directory $DIR_ZIM_BAK
+echo -n "Elementos: "
+find  $DIR_ZIM_BAK |wc -l
+
+ls -l --directory $DIR_ZIM_BAK2
+echo -n "Elementos: "
+find  $DIR_ZIM_BAK2 |wc -l
+
+echo
+echo -n "¿Correcto? "
+read -e FOO
+
+dirdiff "$DIR_ZIM"  "$DIR_ZIM_BAK"
+echo "OK. Bye!"
